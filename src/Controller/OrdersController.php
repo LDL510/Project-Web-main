@@ -55,40 +55,47 @@ class OrdersController extends AbstractController
         ));
     }
 
-    /**
+/**
  * @Route("/order/add/{id}", name="order_add")
  */
-public function addOrder($id, Request $request )
-{  
-      $user = $this->get('security.token_storage')->getToken()->getUser();
-      $em = $this->getDoctrine()->getManager();
-      $product = $em->getRepository('App\Entity\Products')->find($id);
-      if  ($product -> getQuantityProduct() >= 0){   
-          $order = new Orders();
-          $order->setUser($user);
-          $order->setDateOrder("13/3/2024");
-          $order->setPriceOrder(0);
-      
-          $em->persist($order);
-          $em->flush();
-            $response = $this->forward('App\Controller\OrderDetailsController::addOrderDetails', [
-              'idProduct'  =>  $id,
-              'request' => $request,
-              'order' => $order,
-      ]);
-          
-          $orderDetails = $em->getRepository('App\Entity\OrderDetails')->findBy(['order_' => $order]);
-          $totalPrice = 0;
-            foreach ($orderDetails as $item){
-                $totalPrice = $item -> getPriceOrderDetail() + $totalPrice;    
-            }
-          $order->setPriceOrder($totalPrice);
-          $em->persist($order);
-          $em->flush();
+public function addOrder($id, Request $request)
+{
+    $user = $this->get('security.token_storage')->getToken()->getUser();
+    $em = $this->getDoctrine()->getManager();
+    $product = $em->getRepository('App\Entity\Products')->find($id);
+    
+    if ($product->getQuantityProduct() >= 0) {
+        $order = new Orders();
+        $order->setUser($user);
+        
+        // Update date to actual date
+        $date = date('d/m/Y');
+        $order->setDateOrder($date);
+        
+        $order->setPriceOrder(0);
+
+        $em->persist($order);
+        $em->flush();
+
+        $response = $this->forward('App\Controller\OrderDetailsController::addOrderDetails', [
+            'idProduct' => $id,
+            'request' => $request,
+            'order' => $order,
+        ]);
+
+        $orderDetails = $em->getRepository('App\Entity\OrderDetails')->findBy(['order_' => $order]);
+        $totalPrice = 0;
+
+        foreach ($orderDetails as $item) {
+            $totalPrice = $item->getPriceOrderDetail() + $totalPrice;
         }
 
-       return $this->redirectToRoute('products_user');
+        $order->setPriceOrder($totalPrice);
+        $em->persist($order);
+        $em->flush();
+    }
 
+    return $this->redirectToRoute('products_user');
 }
     
        
