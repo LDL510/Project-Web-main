@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+        {% endblock %}
+
+        {% block javascripts %}
+        {% endblock %}
+    </head>
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <h1 class="h3 mb-3 font-weight-normal">Manager Store</h1>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">    
+          <a class="nav-link" href="{{ path('products_index') }}">Manager Product</a>
+      </li>
+      <li class="nav-item">  
+       <a class="nav-link" href="{{ path('orders_admin') }} ">Manager Bill </a>
+      </li>     
+
+    </ul>
+  </div>
+</nav>
+        {% block body %}{% endblock %}
+    </body>
+</html>

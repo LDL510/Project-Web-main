@@ -1,0 +1,37 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block body %}
+    <a href="{{ path('products_create') }} " class='btn btn-success'>Create</a>
+
+    <div class="bs-example" data-example-id="striped-table">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name Product</th>
+                <th>Quantity Product</th>
+                <th>Price Product</th>
+                <td>Image Product </td>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for product in products %}
+                <tr>
+                    <th scope="row">{{ product.id }}</th>
+                    <td>{{ product.nameProduct }}</td>
+                    <td>{{ product.quantityProduct }}</td>
+                    <td>{{ product.priceProduct }}</td>
+				    <td><img class=" img-fluid" style="  height:30px;  " src="{{ asset('uploads/images/products/'~product.imageProduct~'') }}"></td>
+   
+<td>
+                        <a href="{{ path('product_edit', {'id':  product.id }) }} " class='btn btn-success'>View</a>
+                        <a href="{{ path('product_edit', {'id': product.id}) }}" class='btn btn-default'>Edit</a>
+                        <a href="{{ path('product_delete', {'id': product.id}) }}" class='btn btn-danger'>Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

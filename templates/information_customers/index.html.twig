@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello InformationCustomersController!{% endblock %}
+
+{% block body %}
+<section class="vh-100" style="background-color: #f4f5f7;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-6 mb-4 mb-lg-0">
+        <div class="card mb-3" style="border-radius: .5rem;">
+          <div class="row g-0">
+            <div class="col-md-4 gradient-custom text-center text-white"
+              style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+              <h5>Luong Duy Loc</h5>
+              <p>Web Designer</p>
+              <i class="far fa-edit mb-5"></i>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body p-4">
+                <h6>My Profile</h6>
+                <hr class="mt-0 mb-4">      
+                 {{ form_start(form) }}
+
+                <div class="row pt-1">
+                  <div class="col-6 mb-3" style="width: 100%;" >
+                    <div class="form-group">
+                        <h6 for="nameCustomer">Name:</h6>
+                        {{ form_widget(form.nameCustomer,{
+                        'attr':{
+                        'class':'form-control',
+                        'placeholder': 'Enter Your Name'}
+                          }) }}
+                    </div>       
+                  </div>
+                  <div class="col-6 mb-3" style="width: 100%;">
+                    <div class="form-group">
+                        <h6 for="phoneCustomer">Phone:</h6>
+                        {{ form_widget(form.phoneCustomer,{
+                        'attr':{
+                        'class':'form-control',
+                        'placeholder': 'Enter Your Phone'}
+                          }) }}
+                    </div>  
+                  </div>
+                </div>
+                <div class="col-6 mb-3" style="width: 100%;">
+                    <div class="form-group">
+                        <h6 for="addressCustomer">Address:</h6>
+                        {{ form_widget(form.addressCustomer,{
+                        'attr':{
+                        'class':'form-control',
+                        'placeholder': 'Enter Your Address'}
+                          }) }}
+                  </div>  
+                </div>
+                  <input type="submit" name="product_edit" value="Save Change" class="btn btn-primary"/>
+                 {{ form_end(form) }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

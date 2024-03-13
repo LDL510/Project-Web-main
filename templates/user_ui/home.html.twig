@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="wrapper">
+            <div class="container">
+                <div class="row g-1">
+            {% for product in products %}
+            <div class="col-md-3">
+                <div class="card p-3">
+                    <div class="text-center">
+                        <img src="{{ asset('uploads/images/products/'~product.imageProduct~'') }}" width="200">     
+                    </div>
+                         <span class="font-weight-bold d-block">Price: {{ product.priceProduct }} VND</span>
+                         <span>Name: {{ product.nameProduct }}</span>
+                         <div class="buttons d-flex flex-row">
+                               <a href="{{ path('order_add', {'id': product.id}) }}" class='btn btn-success'>Add to cart</a>
+                        </div>
+                         <div class="weight">
+                            <small>Price: {{ product.priceProduct }}</small>
+                            <small>Store: {{ product.quantityProduct }}</small>     
+                         </div>
+
+                    </div>                 
+                </div>
+            {% endfor %}
+                </div>                          
+            </div>              
+    </div>
+{% endblock %}

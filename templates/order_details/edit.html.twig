@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <div class="form-group">
+        <label for="quantityOrderDetail">Quantity:</label>
+        {{ form_widget(form.quantityOrderDetail,{
+            'attr':{
+                'class':'form-control',
+                'placeholder': 'Price'
+            }
+        }) }}
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
