@@ -1,32 +1,66 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        /* Adjust the color of the navigation bar */
+        .navbar {
+            background-color: #f8f9fa;
+            padding: 10px;
+        }
 
-        {% block javascripts %}
-        {% endblock %}
-    </head>
-    <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        /* Adjust the font size and margin of the heading */
+        .navbar h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        /* Adjust the background color of the active navigation link */
+        .navbar .nav-link.active {
+            background-color: #6c757d;
+            color: #ffffff;
+        }
+
+        /* Adjust the spacing of the navigation links */
+        .navbar .nav-item {
+            margin-right: 10px;
+        }
+
+        /* Adjust the hover effect of the navigation links */
+        .navbar .nav-link:hover {
+            color: #6c757d;
+            background-color: #f8f9fa;
+        }
+
+        /* Adjust the styles of the main content area */
+        .content {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
     <h1 class="h3 mb-3 font-weight-normal">Manager Store</h1>
 
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">    
-          <a class="nav-link" href="{{ path('products_index') }}">Manager Product</a>
-      </li>
-      <li class="nav-item">  
-       <a class="nav-link" href="{{ path('orders_admin') }} ">Manager Bill </a>
-      </li>     
-
-    </ul>
-  </div>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ path('products_index') }}">Manager Product</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('orders_admin') }}">Manager Bill</a>
+            </li>
+        </ul>
+    </div>
 </nav>
-        {% block body %}{% endblock %}
-    </body>
+
+<div class="content">
+    {% block body %}{% endblock %}
+</div>
+
+</body>
 </html>
